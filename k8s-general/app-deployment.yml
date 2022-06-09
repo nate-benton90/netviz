@@ -1,0 +1,26 @@
+# FYI >>> following all this and other files from this source: https://www.digitalocean.com/community/tutorials/how-to-automate-deployments-to-digitalocean-kubernetes-with-circleci
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: das-app
+  namespace: default
+  labels:
+    app: das-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: das-app
+  template:
+    metadata:
+      labels:
+        app: das-app
+    spec:
+      containers:
+        - name: das-app
+          image: nathanbenton/das-app:${COMMIT_SHA1}
+          ports:
+            - containerPort: 80
+              name: http
+              
