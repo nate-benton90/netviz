@@ -1,2 +1,6 @@
+#  directories
 /bin/
 /node_modules/
+
+# files
+Pulumi.foodoodumb.yaml
