@@ -1,5 +1,10 @@
 {
-  "dependencies": {
-    "@pulumi/digitalocean": "^4.13.0"
-  }
+    "name": "foodoo",
+    "devDependencies": {
+        "@types/node": "^14"
+    },
+    "dependencies": {
+        "@pulumi/pulumi": "^3.0.0",
+        "@pulumi/digitalocean": "^4.0.0"
+    }
 }

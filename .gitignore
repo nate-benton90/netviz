@@ -1,4 +1,2 @@
-# directories
-node_modules
-
-# files
+/bin/
+/node_modules/
