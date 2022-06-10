@@ -8,6 +8,7 @@ export const mainDroplet = new digitalocean.Droplet("mainFooDooVm", {
     size: "s-1vcpu-1gb",
 });
 
+// default junk firewall
 export const webFirewall = new digitalocean.Firewall("mainDFirewall", {
   inboundRules: [
       {
@@ -37,12 +38,12 @@ export const webFirewall = new digitalocean.Firewall("mainDFirewall", {
 });
 
 // junk k8s cluster
-// export const cluster = new digitalocean.KubernetesCluster("pool-bp4h5quyy", {
-//   region: digitalocean.Region.NYC1,
-//   version: "latest",
-//   nodePool: {
-//       name: "pool-bp4h5quyy",
-//       size: digitalocean.DropletSlug.Droplet1GB,
-//       nodeCount: 1,
-//   },
-// });
+const cluster = new digitalocean.KubernetesCluster("do-cluster", {
+  region: digitalocean.Region.NYC3,
+  version: digitalocean.getKubernetesVersions().then(p => p.latestVersion),
+  nodePool: {
+      name: "default",
+      size: digitalocean.DropletSlug.DropletS1VCPU2GB,
+      nodeCount: 1,
+  },
+});
