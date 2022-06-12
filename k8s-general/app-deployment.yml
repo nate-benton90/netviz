@@ -1,0 +1,26 @@
+# FYI >>> following all this and other files from this source: https://www.digitalocean.com/community/tutorials/how-to-automate-deployments-to-digitalocean-kubernetes-with-circleci
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: do-kubernetes-sample-app
+  namespace: default
+  labels:
+    app: do-kubernetes-sample-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: do-kubernetes-sample-app
+  template:
+    metadata:
+      labels:
+        app: do-kubernetes-sample-app
+    spec:
+      containers:
+        - name: do-kubernetes-sample-app
+          image: nathanbenton/zippadeedoda-app-beta
+          ports:
+            - containerPort: 80
+              name: http
+              
