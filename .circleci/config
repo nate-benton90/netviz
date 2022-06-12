@@ -5,7 +5,7 @@ jobs:
       - image: circleci/buildpack-deps:bullseye
     environment:
       IMAGE_NAME: nathanbenton/do-kubernetes-sample-app
-    working_directory: ~/app
+    working_directory: ../zippadeedoda-app
     steps:
       - checkout
       - setup_remote_docker
