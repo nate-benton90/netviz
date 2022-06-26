@@ -4,22 +4,37 @@ jobs:
     docker:
       - image: cimg/base:2022.06-18.04
     environment:
-      IMAGE_NAME: nathanbenton/das-app
+      IMAGE_NAME_NGINX: nathanbenton/nginx-app
+      IMAGE_NAME_FLASK: nathanbenton/flask-app-foo
     working_directory: ~/app/netviz
     steps:
       - checkout
       - setup_remote_docker
       - run:
-          name: Build Docker image
+          name: build docker image for nginx
           command: |
-            docker build ./zippadeedoda-app/ --tag ${IMAGE_NAME}:latest
+            docker build ./zippadeedoda-app/ --tag ${IMAGE_NAME_NGINX}:latest
       - run:
-          name: Push Docker Image
+          name: push docker image for nginx
           command: |
             echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
-            docker tag $IMAGE_NAME:latest $IMAGE_NAME:$CIRCLE_SHA1
-            docker push $IMAGE_NAME:latest
-            docker push $IMAGE_NAME:$CIRCLE_SHA1
+            docker tag $IMAGE_NAME_NGINX:latest $IMAGE_NAME_NGINX:$CIRCLE_SHA1
+            docker push $IMAGE_NAME_NGINX:latest
+            docker push $IMAGE_NAME_NGINX:$CIRCLE_SHA1
+      - run:
+          name: build docker image for flask
+          command: |
+            docker build ./flask-app/ --build-arg GITHUB_CS=$GITHUB_CS \
+                                      --build-arg GITHUB_CID=$GITHUB_CID \
+                                      --tag ${IMAGE_NAME_FLASK}:latest
+      - run:
+          name: push docker image for flask
+          command: |
+            echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+            docker tag $IMAGE_NAME_FLASK:latest $IMAGE_NAME_FLASK:$CIRCLE_SHA1
+            docker push $IMAGE_NAME_FLASK:latest
+            docker push $IMAGE_NAME_FLASK:$CIRCLE_SHA1
+
   deploy:
       docker:
         - image: cimg/base:2022.06-18.04
@@ -45,10 +60,11 @@ workflows:
       - build:
           filters:
             branches:
-              only: feature/setup
+              only: [ feature/auth-setup ]
       - deploy:
           requires:
             - build
           filters:
             branches:
-              only: feature/setup
+              only: [ feature/auth-setup ]
+

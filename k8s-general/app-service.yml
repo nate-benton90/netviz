@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: das-app
+  name: nginx-app
   namespace: default
   labels:
-    app: das-app
+    app: nginx-app
 spec:
   type: ClusterIP
   ports:
@@ -12,5 +12,5 @@ spec:
       targetPort: http
       name: http
   selector:
-    app: das-app
+    app: nginx-app
     
