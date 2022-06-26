@@ -22,8 +22,8 @@ then apply your edits).
 7) Re-create K8s resources provided in the tutorial via your local.
 
 * Updating, using, & testing for the K8s platform:
-1) Exposing/accessing a given (pod)app from your local machine via: `kubectl port-forward das-app-76c6cf4ccc-z2rmd 7777:80`.
-2) Use local browser with `127.0.0.1:7777` or `cURL` with same parameters to verify changes or current state of HTML page.
+1) Exposing/accessing a given (pod)app from your local machine via: `kubectl port-forward nginx-app-76c6cf4ccc-z2rmd 30000:80`.
+2) Use local browser with `127.0.0.1:30000` or `cURL` with same parameters to verify changes or current state of HTML page.
 3) ...
 
 * Rando segments to add/test on K8s platform
