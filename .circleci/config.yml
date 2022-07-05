@@ -60,11 +60,11 @@ workflows:
       - build:
           filters:
             branches:
-              only: [ feature/auth-setup ]
+              only: [ feature/dbs-setup ]
       - deploy:
           requires:
             - build
           filters:
             branches:
-              only: [ feature/auth-setup ]
+              only: [ feature/dbs-setup ]
 
