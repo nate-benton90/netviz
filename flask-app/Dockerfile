@@ -15,9 +15,8 @@ RUN apk update && \
     apk add libffi-dev && \
     apk add python3-dev && \
     apk add gcc && \
-    apk add libc-dev && \
-    apk add certbot
-
+    apk add libc-dev
+    
 RUN pip install -r requirements.txt
 
 COPY . /app
