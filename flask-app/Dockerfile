@@ -11,12 +11,8 @@ COPY ./requirements.txt /app/requirements.txt
 WORKDIR /app
 
 # needed for python ssl package and certbot (i.e. letsencryt)
-RUN apk update && \
-    apk add libffi-dev && \
-    apk add python3-dev && \
-    apk add gcc && \
-    apk add libc-dev
-    
+# ???
+
 RUN pip install -r requirements.txt
 
 COPY . /app

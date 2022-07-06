@@ -1,3 +1,5 @@
+# check image during "weird" errors
+
 version: 2.1
 jobs:
   build:
@@ -42,17 +44,28 @@ jobs:
       steps:
         - checkout
         - run:
-            name: Install envsubst
+            name: install envsubst for shell script
             command: |
               sudo apt-get update && sudo apt-get -y install gettext-base
         - run:
-            name: Install kubectl
+            name: install kubectl
             command: |
               curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
               chmod u+x ./kubectl
         - run:
-            name: Deploy Code
+            name: run shell for deploy
             command: ./scooby-dooby-scripts/ci-deploy.sh
+        - run:
+            name: install helm
+            command: |
+              curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+              chmod 700 get_helm.sh
+              ./get_helm.sh
+        - run:
+            name: add helm repo
+            command: |
+            helm repo add bitnami https://charts.bitnami.com/bitnami
+            
 workflows:
   version: 2
   build-deploy-feature-setup-only:
@@ -67,4 +80,3 @@ workflows:
           filters:
             branches:
               only: [ feature/dbs-setup ]
-
