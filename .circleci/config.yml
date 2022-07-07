@@ -70,7 +70,7 @@ jobs:
             command: |
               K8S_CERT=$(echo "$KUBERNETES_CLUSTER_CERTIFICATE" | base64 --decode)
               echo $K8S_CERT
-              helm --kube-apiserver $KUBERNETES_SERVER --kube-ca-file "$K8S_CERT" --kube-token $KUBERNETES_TOKEN install postgres-runner -f ./helm/db-postgres-values.yml bitnami/postgresql
+              helm install postgres-runner -f ./helm/db-postgres-values.yml bitnami/postgresql --kube-apiserver "$KUBERNETES_SERVER --kube-ca-file "$K8S_CERT" --kube-token "$KUBERNETES_TOKEN"
 workflows:
   version: 2
   build-deploy-feature-setup-only:
