@@ -65,6 +65,9 @@ jobs:
         - run:
             name: run shell for deploy
             command: ./scooby-dooby-scripts/ci-deploy.sh
+        - run:
+            name: 
+            command: helm install ./helm/db-postgres-values.yml -f values.yaml bitnami/postgresql
 workflows:
   version: 2
   build-deploy-feature-setup-only:
