@@ -67,7 +67,12 @@ jobs:
             command: ./scooby-dooby-scripts/ci-deploy.sh
         - run:
             name: install/start postgres via helm
-            command: pwd; helm install postgres-runner -f ./helm/db-postgres-values.yml bitnami/postgresql
+            command: |
+              K8S_CERT=$(echo "$KUBERNETES_CLUSTER_CERTIFICATE" | base64 --decode)
+              helm install postgres-runner -f ./helm/db-postgres-values.yml bitnami/postgresql \
+              --kube-apiserver $KUBERNETES_SERVER \
+              --kube-ca-file $K8S_CERT \
+              --kube-token $KUBERNETES_TOKEN
 workflows:
   version: 2
   build-deploy-feature-setup-only:
