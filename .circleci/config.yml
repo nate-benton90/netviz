@@ -53,9 +53,6 @@ jobs:
               curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
               chmod u+x ./kubectl
         - run:
-            name: run shell for deploy
-            command: ./scooby-dooby-scripts/ci-deploy.sh
-        - run:
             name: install helm
             command: |
               curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
@@ -65,7 +62,9 @@ jobs:
             name: add helm repo
             command: |
               helm repo add bitnami https://charts.bitnami.com/bitnami
-
+        - run:
+            name: run shell for deploy
+            command: ./scooby-dooby-scripts/ci-deploy.sh
 workflows:
   version: 2
   build-deploy-feature-setup-only:
