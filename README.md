@@ -26,9 +26,9 @@ then apply your edits).
 2) Use local browser with `127.0.0.1:30000` or `cURL` with same parameters to verify changes or current state of HTML page.
 3) ...
 
-* Rando segments to add/test on K8s platform
+* Rando segments to add/test/manage on K8s platform
 1) Promethius+Grafana >>> `helm repo add prometheus-community https://prometheus-community.github.io/helm-charts` & `helm repo add grafana https://grafana.github.io/helm-charts`.
-2) ...
+2) Examine persistent volume and persistent volume claims (check the namespace) via: `kubectl get pv` and `kubectl get pvc`
 
 
 * K8s verification/monitoring commands:
