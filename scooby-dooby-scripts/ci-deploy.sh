@@ -14,8 +14,8 @@ envsubst < ./k8s-general/app-deployment-flask.yml > ./k8s-general/app-deployment
 mv ./k8s-general/app-deployment-flask.yml.out ./k8s-general/app-deployment-flask.yml
 
 # for secrete(s) postgres creation 
-envsubst < ./k8s-general/db-postgres-values.yml > ./k8s-general/db-postgres-values.yml.out
-mv ./k8s-general/db-postgres-values.yml.out ./k8s-general/db-postgres-values.yml
+envsubst < ./helm/db-postgres-values.yml > ./helm/db-postgres-values.yml.out
+mv ./helm/db-postgres-values.yml.out ./helm/db-postgres-values.yml
 
 echo "$KUBERNETES_CLUSTER_CERTIFICATE" | base64 --decode > cert.crt
 
