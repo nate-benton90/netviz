@@ -1,4 +1,3 @@
-# define default database user, name, and password for PostgreSQL deployment
 auth:
   enablePostgresUser: true
   postgresPassword: $PG_ADMIN_PW
@@ -6,12 +5,10 @@ auth:
   password: $PG_SU_USER_PW
   database: "runner"
 
-# the postgres helm chart deployment will be using PVC db-postgres-pvc
+primary:
   persistence:
     enabled: true
     existingClaim: "db-postgres-pvc"
-
-# change whatever default value fo the helm chart is for cpu
   resources:
-    requests:
-      cpu: 100m
+  requests:
+    cpu: 100m
