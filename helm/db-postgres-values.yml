@@ -12,3 +12,6 @@ primary:
   resources:
   requests:
     cpu: 100m
+
+volumePermissions:
+  enabled: true
