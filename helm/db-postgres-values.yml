@@ -12,6 +12,6 @@ auth:
     existingClaim: "db-postgres-pvc"
 
 # change whatever default value fo the helm chart is for cpu
-resources:
-  requests:
-    cpu: 100m
+  resources:
+    requests:
+      cpu: 100m
