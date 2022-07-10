@@ -14,5 +14,4 @@ auth:
 # change whatever default value fo the helm chart is for cpu
 resources:
   requests:
-    cpu: 400m
-    
+    cpu: 100m
