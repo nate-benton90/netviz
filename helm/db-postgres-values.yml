@@ -6,8 +6,13 @@ auth:
   password: $PG_SU_USER_PW
   database: "runner"
 
-# the postgres helm chart deployment will be using PVC postgresql-data-claim
-primary:
+# the postgres helm chart deployment will be using PVC db-postgres-pvc
   persistence:
     enabled: true
     existingClaim: "db-postgres-pvc"
+
+# change whatever default value fo the helm chart is for cpu
+resources:
+  requests:
+    cpu: 400m
+    
