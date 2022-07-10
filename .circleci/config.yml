@@ -73,7 +73,7 @@ jobs:
                       --kube-ca-file ./cert.crt \
                       --kube-token $KUBERNETES_TOKEN \
                       --kube-apiserver ${KUBERNETES_SERVER}:443 --debug \
-                      ||
+                      || \
                       echo "skipping helm install"
 workflows:
   version: 2
