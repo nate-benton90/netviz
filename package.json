@@ -6,7 +6,7 @@
         "typescript": "^4.7.3"
     },
     "dependencies": {
-        "@pulumi/digitalocean": "^4.0.0",
+        "@pulumi/digitalocean": "^4.14.0",
         "@pulumi/pulumi": "^3.0.0",
         "@types/mocha": "^9.1.1",
         "mocha": "^10.0.0"

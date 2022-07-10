@@ -47,3 +47,6 @@ const cluster = new digitalocean.KubernetesCluster("do-cluster", {
       nodeCount: 1,
   },
 });
+
+// output rando k8s properties
+const what := Out
