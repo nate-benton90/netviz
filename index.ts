@@ -1,26 +1,19 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as digitalocean from "@pulumi/digitalocean";
 
-// server for anything
-// export const mainDroplet = new digitalocean.Droplet("mainFooDooVm", {
-//     image: "ubuntu-18-04-x64",
-//     region: digitalocean.Region.NYC1,
-//     size: "s-1vcpu-1gb",
-// });
-
-// default junk firewall
-export const webFirewall = new digitalocean.Firewall("mainDFirewall", {
+// replacement k8s firewall
+export const webFirewall = new digitalocean.Firewall("mainK8sFirewall", {
   inboundRules: [
       {
           protocol: "tcp",
-          portRange: "80",
+          portRange: "30000",
           sourceAddresses: [
               "0.0.0.0/0",
           ],
       },
       {
           protocol: "tcp",
-          portRange: "443",
+          portRange: "5432",
           sourceAddresses: [
               "0.0.0.0/0",
           ],
@@ -34,10 +27,17 @@ export const webFirewall = new digitalocean.Firewall("mainDFirewall", {
               "0.0.0.0/0",
           ],
       },
+      {
+        protocol: "tcp",
+        portRange: "443",
+        destinationAddresses: [
+            "0.0.0.0/0",
+        ],
+    },
   ],
 });
 
-// junk k8s cluster
+// main k8s cluster
 const cluster = new digitalocean.KubernetesCluster("do-cluster", {
   region: digitalocean.Region.NYC3,
   version: digitalocean.getKubernetesVersions().then(p => p.latestVersion),
@@ -47,6 +47,3 @@ const cluster = new digitalocean.KubernetesCluster("do-cluster", {
       nodeCount: 1,
   },
 });
-
-// output rando k8s properties
-const what := Out
