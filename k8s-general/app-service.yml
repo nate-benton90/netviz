@@ -8,9 +8,9 @@ metadata:
 spec:
   type: ClusterIP
   ports:
-    - port: 80
-      targetPort: http
-      name: http
+    - port: 30000
+      nodePort: 30000
+      name: node-port-flask
+      protocol: TCP
   selector:
-    app: nginx-app
-    
+    app: nginx-app    
