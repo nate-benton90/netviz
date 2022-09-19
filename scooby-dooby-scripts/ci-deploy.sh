@@ -25,4 +25,4 @@ kubectl \
   --server=$KUBERNETES_SERVER \
   --certificate-authority=cert.crt \
   --token=$KUBERNETES_TOKEN \
-  apply -f ./k8s-general/
+  apply -f ./k8s-general/ --force
