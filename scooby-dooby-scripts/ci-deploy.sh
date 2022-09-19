@@ -13,10 +13,6 @@ mv ./k8s-general/app-deployment.yml.out ./k8s-general/app-deployment.yml
 envsubst < ./k8s-general/app-deployment-flask.yml > ./k8s-general/app-deployment-flask.yml.out
 mv ./k8s-general/app-deployment-flask.yml.out ./k8s-general/app-deployment-flask.yml
 
-# for secrete(s) postgres creation 
-envsubst < ./helm/db-postgres-values.yml > ./helm/db-postgres-values.yml.out
-mv ./helm/db-postgres-values.yml.out ./helm/db-postgres-values.yml
-
 echo "$KUBERNETES_CLUSTER_CERTIFICATE" | base64 --decode > cert.crt
 
 sudo chmod +x ./kubectl
